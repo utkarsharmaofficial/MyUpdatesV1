@@ -1,4 +1,6 @@
 import { DEFAULT_IMAGES, DEFAULT_SONGS } from '@/lib/defaults'
+import { PROFILE_DEFINITIONS } from '@/lib/profiles'
+import { THEME_DEFINITIONS, deriveCustomTheme, type ThemeDefinition } from '@/lib/themes'
 
 // ── Date Helpers ─────────────────────────────────────────────
 
@@ -30,7 +32,6 @@ export function formatTime(seconds: number): string {
 }
 
 // ── Streak Calculators ───────────────────────────────────────
-// Entries: Record<"YYYY-MM-DD", level> where level >= 1 means "done that day"
 
 /** Number of consecutive days up to and including today with level > 0. */
 export function getCurrentStreak(entries: Record<string, number>): number {
@@ -81,7 +82,6 @@ export function getTotalCount(entries: Record<string, number>): number {
 }
 
 // ── Expense Calculators ──────────────────────────────────────
-// Entries: Record<"YYYY-MM-DD", amount in ₹>
 
 /** Today's spending amount. */
 export function getDailyAmount(entries: Record<string, number>): number {
@@ -120,34 +120,89 @@ export function nextLevel(current: number): 0 | 1 | 2 | 3 {
   return ((current + 1) % 4) as 0 | 1 | 2 | 3
 }
 
-/** Hex colour for a given heatmap level. */
+/** Hex colour for a given heatmap level — reads current CSS vars at call site. */
 export function cellColour(level: 0 | 1 | 2 | 3): string {
   return ['#F5EDE9', '#FBA98E', '#F86A3A', '#F64409'][level]
 }
 
-// ── Media Resolver ───────────────────────────────────────────
+// ── Media Types ──────────────────────────────────────────────
 
 export interface UserMediaItem {
   id: string
-  type: 'image' | 'song'
+  type: 'image' | 'song' | 'logo'
   storage_path: string
   public_url: string
   display_name: string
-  display_url?: string  // signed URL for display — generated server-side, not persisted
+  display_url?: string
 }
 
-/** Returns user images if any exist, otherwise the 10 defaults. */
-export function resolveImages(userMedia: UserMediaItem[]): { url: string; alt: string }[] {
-  const images = userMedia.filter(m => m.type === 'image')
-  if (images.length === 0) return DEFAULT_IMAGES
-  return images.map(m => ({ url: m.public_url, alt: m.display_name }))
+export interface UserProfile {
+  selected_profile:  string
+  theme_color:       string
+  custom_theme_c1:   string | null
+  custom_theme_c2:   string | null
+  custom_theme_c3:   string | null
 }
 
-/** Returns user songs if any exist, otherwise the 3 defaults. */
-export function resolveSongs(userMedia: UserMediaItem[]): { name: string; url: string }[] {
-  const songs = userMedia.filter(m => m.type === 'song')
-  if (songs.length === 0) return DEFAULT_SONGS
-  return songs.map(m => ({ name: m.display_name, url: m.public_url }))
+// ── Profile-aware Media Resolvers ─────────────────────────────
+
+/** Returns the image list for the current user profile. */
+export function resolveImages(
+  profile: UserProfile,
+  userMedia: UserMediaItem[],
+): { url: string; alt: string }[] {
+  if (profile.selected_profile === 'custom') {
+    const images = userMedia.filter(m => m.type === 'image')
+    if (images.length > 0) {
+      return images.map(m => ({ url: m.display_url ?? m.public_url, alt: m.display_name }))
+    }
+    return DEFAULT_IMAGES
+  }
+  const def = PROFILE_DEFINITIONS[profile.selected_profile]
+  return def?.images ?? DEFAULT_IMAGES
+}
+
+/** Returns the song list for the current user profile. */
+export function resolveSongs(
+  profile: UserProfile,
+  userMedia: UserMediaItem[],
+): { name: string; url: string }[] {
+  if (profile.selected_profile === 'custom') {
+    const songs = userMedia.filter(m => m.type === 'song')
+    if (songs.length > 0) {
+      return songs.map(m => ({ name: m.display_name, url: m.display_url ?? m.public_url }))
+    }
+    return DEFAULT_SONGS
+  }
+  const def = PROFILE_DEFINITIONS[profile.selected_profile]
+  if (!def || def.songs.length === 0) return DEFAULT_SONGS
+  return def.songs
+}
+
+/** Returns the logo path for the current user profile. */
+export function resolveLogoPath(
+  profile: UserProfile,
+  userMedia: UserMediaItem[],
+): string {
+  if (profile.selected_profile === 'custom') {
+    const logo = userMedia.find(m => m.type === 'logo')
+    if (logo) return logo.display_url ?? logo.public_url
+    return '/logo/HanumanJiLogo.jpeg'
+  }
+  const def = PROFILE_DEFINITIONS[profile.selected_profile]
+  return def?.logoPath ?? '/logo/HanumanJiLogo.jpeg'
+}
+
+/** Returns the resolved ThemeDefinition for the current user profile. */
+export function resolveTheme(profile: UserProfile): ThemeDefinition {
+  if (profile.theme_color === 'custom' && profile.custom_theme_c3) {
+    return deriveCustomTheme(
+      profile.custom_theme_c3,
+      profile.custom_theme_c1,
+      profile.custom_theme_c2,
+    )
+  }
+  return THEME_DEFINITIONS[profile.theme_color] ?? THEME_DEFINITIONS.orange
 }
 
 // ── Heatmap Grid Builder ─────────────────────────────────────
@@ -160,7 +215,6 @@ export function resolveSongs(userMedia: UserMediaItem[]): { name: string; url: s
 export function buildYearGrid(year: number): Date[][] {
   const jan1 = new Date(year, 0, 1)
   const startDay = new Date(jan1)
-  // (getDay() + 6) % 7 maps Sun=0→6, Mon=1→0, Tue=2→1 … Sat=6→5
   startDay.setDate(jan1.getDate() - ((jan1.getDay() + 6) % 7))
 
   const weeks: Date[][] = []
@@ -172,7 +226,6 @@ export function buildYearGrid(year: number): Date[][] {
       cursor.setDate(cursor.getDate() + 1)
     }
     weeks.push(week)
-    // After 7 days from Monday, cursor lands on the next Monday (getDay() === 1)
     if (cursor.getFullYear() > year && cursor.getDay() === 1) break
   }
   return weeks

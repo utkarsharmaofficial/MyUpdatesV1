@@ -9,15 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'brand-light':   '#FBA98E',
-        'brand-mid':     '#F86A3A',
-        'brand-strong':  '#F64409',
-        'surface':       '#FFF8F6',
-        'border':        '#F0E8E5',
-        'border-strong': '#E8D5CF',
+        'brand-light':   'var(--brand-light)',
+        'brand-mid':     'var(--brand-mid)',
+        'brand-strong':  'var(--brand-strong)',
+        'surface':       'var(--surface)',
+        'border':        'var(--border)',
+        'border-strong': 'var(--border-strong)',
         'app-text':      '#1A0A06',
         'app-muted':     '#8A6560',
-        'empty':         '#F5EDE9',
+        'empty':         'var(--empty)',
       },
       fontFamily: {
         sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'sans-serif'],

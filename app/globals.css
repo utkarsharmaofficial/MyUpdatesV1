@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Default theme: orange — overridden at runtime via inline style on <html> */
+:root {
+  --brand-light:   #FBA98E;
+  --brand-mid:     #F86A3A;
+  --brand-strong:  #F64409;
+  --surface:       #FFF8F6;
+  --empty:         #F5EDE9;
+  --border:        #F0E8E5;
+  --border-strong: #E8D5CF;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

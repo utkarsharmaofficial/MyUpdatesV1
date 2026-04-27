@@ -30,14 +30,16 @@ export async function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname
 
-  // Protect /dashboard and /profile — redirect to / if not authenticated
-  if (!user && (pathname.startsWith('/dashboard') || pathname.startsWith('/profile'))) {
+  // Protect authenticated routes — redirect to / if not authenticated
+  const protectedPaths = ['/dashboard', '/profile', '/onboarding']
+  if (!user && protectedPaths.some(p => pathname.startsWith(p))) {
     const redirectUrl = request.nextUrl.clone()
     redirectUrl.pathname = '/'
     return NextResponse.redirect(redirectUrl)
   }
 
   // If authenticated and visiting /, redirect to /dashboard
+  // (dashboard/page.tsx handles the onboarding check from there)
   if (user && pathname === '/') {
     const redirectUrl = request.nextUrl.clone()
     redirectUrl.pathname = '/dashboard'
@@ -49,6 +51,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    // Skip Next.js internals, static files, and all media/font extensions
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp3|ogg|m4a|ico|woff|woff2)$).*)',
   ],
 }

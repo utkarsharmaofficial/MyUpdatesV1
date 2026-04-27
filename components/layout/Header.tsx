@@ -1,27 +1,28 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { signOut } from '@/app/actions'
 
 interface HeaderProps {
   userEmail: string | null
+  logoSrc:   string
 }
 
-export default function Header({ userEmail }: HeaderProps) {
+export default function Header({ userEmail, logoSrc }: HeaderProps) {
   const initial = userEmail ? userEmail[0].toUpperCase() : '?'
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b-2 border-brand-strong flex items-center justify-between px-5 h-[52px]">
       {/* Left: logo + title */}
       <Link href="/" className="flex items-center gap-2.5">
-        <Image
-          src="/logo/HanumanJiLogo.jpeg"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={logoSrc}
           alt="MyUpdates Logo"
           width={36}
           height={36}
           className="rounded-lg object-cover"
-          priority
+          style={{ width: 36, height: 36, flexShrink: 0 }}
         />
         <span className="text-base font-semibold text-app-text">
           My <span className="text-brand-strong">Updates</span>
