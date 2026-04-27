@@ -31,11 +31,14 @@ export default function AuthForm() {
     const supabase = createClient()
 
     if (mode === 'register') {
-      const { error } = await supabase.auth.signUp({ email, password })
+      const { data, error } = await supabase.auth.signUp({ email, password })
       if (error) {
         setError(error.message)
+      } else if (data.session) {
+        // Auto-confirmed: session is active, go to dashboard (which redirects to onboarding)
+        router.push('/dashboard')
       } else {
-        setSuccess('Account created! Check your email to confirm.')
+        setSuccess('Account created! Check your email to confirm, then sign in.')
       }
     } else {
       const { error } = await supabase.auth.signInWithPassword({ email, password })

@@ -1,7 +1,14 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { createClient } from '@/lib/supabase/server'
-import { resolveImages, resolveSongs } from '@/lib/utils'
+import {
+  resolveImages,
+  resolveSongs,
+  resolveLogoPath,
+  resolveTheme,
+  type UserProfile,
+  type UserMediaItem,
+} from '@/lib/utils'
 import { DEFAULT_IMAGES, DEFAULT_SONGS } from '@/lib/defaults'
 import Header from '@/components/layout/Header'
 import Slideshow from '@/components/layout/Slideshow'
@@ -13,6 +20,14 @@ export const metadata: Metadata = {
   icons: { icon: '/logo/HanumanJiLogo.jpeg' },
 }
 
+const DEFAULT_PROFILE: UserProfile = {
+  selected_profile: 'HanumanJi',
+  theme_color:      'orange',
+  custom_theme_c1:  null,
+  custom_theme_c2:  null,
+  custom_theme_c3:  null,
+}
+
 export default async function RootLayout({
   children,
 }: {
@@ -21,34 +36,61 @@ export default async function RootLayout({
   const supabase = createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
+  let userProfile: UserProfile = DEFAULT_PROFILE
+  let userMedia:   UserMediaItem[] = []
   let imageUrls = DEFAULT_IMAGES
   let songs     = DEFAULT_SONGS
+  let logoSrc   = '/logo/HanumanJiLogo.jpeg'
 
   if (user) {
-    const { data: media } = await supabase
-      .from('user_media')
-      .select('*')
-      .eq('user_id', user.id)
+    // Fetch user profile preferences
+    const { data: profileRow } = await supabase
+      .from('profiles')
+      .select('selected_profile, theme_color, custom_theme_c1, custom_theme_c2, custom_theme_c3')
+      .eq('id', user.id)
+      .single()
 
-    // Generate 8-hour signed URLs so media displays correctly
-    // whether the user-media bucket is public or private
-    const mediaWithUrls = await Promise.all(
-      (media ?? []).map(async (item) => {
-        const { data } = await supabase.storage
-          .from('user-media')
-          .createSignedUrl(item.storage_path, 60 * 60 * 8)
-        return { ...item, public_url: data?.signedUrl ?? item.public_url }
-      })
-    )
+    if (profileRow) userProfile = profileRow as UserProfile
 
-    imageUrls = resolveImages(mediaWithUrls)
-    songs     = resolveSongs(mediaWithUrls)
+    // Only fetch user_media for custom profile (images, songs, logo)
+    if (userProfile.selected_profile === 'custom') {
+      const { data: media } = await supabase
+        .from('user_media')
+        .select('*')
+        .eq('user_id', user.id)
+
+      userMedia = await Promise.all(
+        (media ?? []).map(async (item) => {
+          const { data } = await supabase.storage
+            .from('user-media')
+            .createSignedUrl(item.storage_path, 60 * 60 * 8)
+          return { ...item, display_url: data?.signedUrl ?? item.public_url } as UserMediaItem
+        })
+      )
+    }
+
+    imageUrls = resolveImages(userProfile, userMedia)
+    songs     = resolveSongs(userProfile, userMedia)
+    logoSrc   = resolveLogoPath(userProfile, userMedia)
   }
 
+  const theme = resolveTheme(userProfile)
+
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      style={{
+        '--brand-light':   theme.c1,
+        '--brand-mid':     theme.c2,
+        '--brand-strong':  theme.c3,
+        '--surface':       theme.surface,
+        '--empty':         theme.empty,
+        '--border':        theme.border,
+        '--border-strong': theme.borderStrong,
+      } as React.CSSProperties}
+    >
       <body>
-        <Header userEmail={user?.email ?? null} />
+        <Header userEmail={user?.email ?? null} logoSrc={logoSrc} />
 
         <div className="page-layout">
           <div className="image-panel">
