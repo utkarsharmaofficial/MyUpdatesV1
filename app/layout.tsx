@@ -17,7 +17,7 @@ import MusicPlayer from '@/components/layout/MusicPlayer'
 export const metadata: Metadata = {
   title: 'My Updates',
   description: 'Track your grind',
-  icons: { icon: '/logo/HanumanJiLogo.jpeg' },
+  icons: { icon: '/favicon.png' },
 }
 
 const DEFAULT_PROFILE: UserProfile = {
