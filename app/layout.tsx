@@ -17,7 +17,7 @@ import MusicPlayer from '@/components/layout/MusicPlayer'
 export const metadata: Metadata = {
   title: 'My Updates',
   description: 'Track your grind',
-  icons: { icon: '/favicon.png' },
+  icons: { icon: 'https://hxdjonkahanjqtuwvusn.supabase.co/storage/v1/object/public/defaults/favicon.png' },
 }
 
 const DEFAULT_PROFILE: UserProfile = {

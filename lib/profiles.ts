@@ -1,3 +1,5 @@
+const SONGS_BASE = 'https://hxdjonkahanjqtuwvusn.supabase.co/storage/v1/object/public/defaults/songs'
+
 export interface ProfileSong {
   name: string
   url: string
@@ -31,23 +33,23 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
     songs: [
       {
         name: 'Jai Shree Ram',
-        url: '/profiles/HanumanJi/Songs/Jai%20Shree%20Ram%20-%20Thaman%20S%20-%20Topic%20(128k).mp3',
+        url: `${SONGS_BASE}/Jai%20Shree%20Ram%20-%20Thaman%20S%20-%20Topic%20(128k).mp3`,
       },
       {
         name: 'Ram Naam Jap',
-        url: '/profiles/HanumanJi/Songs/Ram-Naam-Jap-Shri-Ram-Jai-Ram-Jai.mp3',
+        url: `${SONGS_BASE}/Ram-Naam-Jap-Shri-Ram-Jai-Ram-Jai.mp3`,
       },
       {
         name: 'Sri Ramadootha Stotram',
-        url: '/profiles/HanumanJi/Songs/Sri-Ramadootha-Stotram.mp3',
+        url: `${SONGS_BASE}/Sri-Ramadootha-Stotram.mp3`,
       },
       {
         name: 'Bajrang Baan',
-        url: '/profiles/HanumanJi/Songs/Bajrang%20Baan%20-%20Rasraj%20Ji%20Maharaj.mp3',
+        url: `${SONGS_BASE}/Bajrang%20Baan%20-%20Rasraj%20Ji%20Maharaj.mp3`,
       },
       {
         name: 'Hanuman Chalisa',
-        url: '/profiles/HanumanJi/Songs/Hanuman%20Chalisa%20-%20Rasraj%20ji%20Maharaj.mp3',
+        url: `${SONGS_BASE}/Hanuman%20Chalisa%20-%20Rasraj%20ji%20Maharaj.mp3`,
       },
     ],
   },
@@ -68,10 +70,10 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/GaneshaJi/Ganesha9.jpeg', alt: 'Ganesha Ji 9' },
     ],
     songs: [
-      { name: 'Deva Shree Ganesha',        url: '/profiles/GaneshaJi/Songs/Deva%20Shree%20Ganesha.mp3' },
-      { name: 'Ekadantaya Vakratundaya',    url: '/profiles/GaneshaJi/Songs/Ekadantaya%20Vakratundaya%20Gauri%20Tanaya%20Dhimi.mp3' },
-      { name: 'Gajanana',                  url: '/profiles/GaneshaJi/Songs/Gajanana.mp3' },
-      { name: 'Ganesh Aarti',              url: '/profiles/GaneshaJi/Songs/Ganesh%20Aarti.mp3' },
+      { name: 'Deva Shree Ganesha',        url: `${SONGS_BASE}/Deva%20Shree%20Ganesha.mp3` },
+      { name: 'Ekadantaya Vakratundaya',    url: `${SONGS_BASE}/Ekadantaya%20Vakratundaya%20Gauri%20Tanaya%20Dhimi.mp3` },
+      { name: 'Gajanana',                  url: `${SONGS_BASE}/Gajanana.mp3` },
+      { name: 'Ganesh Aarti',              url: `${SONGS_BASE}/Ganesh%20Aarti.mp3` },
     ],
   },
 
@@ -92,9 +94,9 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/KrishanJi/Krishna10.jpeg', alt: 'Krishan Ji 10' },
     ],
     songs: [
-      { name: 'Jai Sri Krishna',                    url: '/profiles/KrishanJi/Songs/Jai%20Sri%20Krsna%20-%20Mayapuris%20(128k).mp3' },
-      { name: 'Om Namo Bhagavate Vasudevaya',       url: '/profiles/KrishanJi/Songs/Om%20Namo%20Bhagavate%20Vasudevaya.mp3' },
-      { name: 'Shri Krishna Govind Hare Murari',    url: '/profiles/KrishanJi/Songs/SHRI%20KRISHNA%20GOVIND%20HARE%20MURARI.mp3' },
+      { name: 'Jai Sri Krishna',                    url: `${SONGS_BASE}/Jai%20Sri%20Krsna%20-%20Mayapuris%20(128k).mp3` },
+      { name: 'Om Namo Bhagavate Vasudevaya',       url: `${SONGS_BASE}/Om%20Namo%20Bhagavate%20Vasudevaya.mp3` },
+      { name: 'Shri Krishna Govind Hare Murari',    url: `${SONGS_BASE}/SHRI%20KRISHNA%20GOVIND%20HARE%20MURARI.mp3` },
     ],
   },
 
@@ -115,10 +117,10 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/NavaratriSpecial/MaaSiddhidatri.jpeg',    alt: 'Maa Siddhidatri'     },
     ],
     songs: [
-      { name: 'Jagdamba Ghar Me',          url: '/profiles/NavaratriSpecial/Songs/Jagdamba%20Ghar%20Me%20Swati%20Mishra%20Mohit%20Musik%20Bhojpuri%20Navratri%20Song%202025%20Devi%20Geet.mp3' },
-      { name: 'Jode Jode Falwa',           url: '/profiles/NavaratriSpecial/Songs/Jode%20Jode%20Falwa%20Suruj%20dev%20Swati%20Mishra%20Chath%20Geet.mp3' },
-      { name: 'Meri Maa Ke Barabar',       url: '/profiles/NavaratriSpecial/Songs/Meri%20Maa%20Ke%20Barabar%20Koi%20Nahi%20Swati%20Mishra%20Navratri%20special%20song.mp3' },
-      { name: 'Nimiya Ke Dadh Maiya',      url: '/profiles/NavaratriSpecial/Songs/Nimiya%20ke%20Dadh%20Maiya%20Swati%20Mishra.mp3' },
+      { name: 'Jagdamba Ghar Me',          url: `${SONGS_BASE}/Jagdamba%20Ghar%20Me%20Swati%20Mishra%20Mohit%20Musik%20Bhojpuri%20Navratri%20Song%202025%20Devi%20Geet.mp3` },
+      { name: 'Jode Jode Falwa',           url: `${SONGS_BASE}/Jode%20Jode%20Falwa%20Suruj%20dev%20Swati%20Mishra%20Chath%20Geet.mp3` },
+      { name: 'Meri Maa Ke Barabar',       url: `${SONGS_BASE}/Meri%20Maa%20Ke%20Barabar%20Koi%20Nahi%20Swati%20Mishra%20Navratri%20special%20song.mp3` },
+      { name: 'Nimiya Ke Dadh Maiya',      url: `${SONGS_BASE}/Nimiya%20ke%20Dadh%20Maiya%20Swati%20Mishra.mp3` },
     ],
   },
 
@@ -139,7 +141,7 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/PremanandJi/PremanandJi10.jpeg', alt: 'Premanand Ji 10' },
     ],
     songs: [
-      { name: 'Shri Radha Naam Jaap',      url: '/profiles/PremanandJi/Songs/Shri%20Radha%20Naam%20Jaap.mp3' },
+      { name: 'Shri Radha Naam Jaap',      url: `${SONGS_BASE}/Shri%20Radha%20Naam%20Jaap.mp3` },
     ],
   },
 
@@ -160,10 +162,10 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/RamJi/Ram10.jpeg', alt: 'Ram Ji 10' },
     ],
     songs: [
-      { name: 'Jai Shri Ram',                      url: '/profiles/RamJi/Songs/JAI-SHRI-RAM.mp3' },
-      { name: 'Ram Jo Karenge Achha Karenge',       url: '/profiles/RamJi/Songs/Ram%20Jo%20Karenge%20Achha%20Karenge.mp3' },
-      { name: 'Ram Siya Ram',                       url: '/profiles/RamJi/Songs/Ram-Siya-Ram.mp3' },
-      { name: 'Tum Utho Siya Singaar Karo',         url: '/profiles/RamJi/Songs/Tum%20Utho%20Siya%20Singaar%20Karo.mp3' },
+      { name: 'Jai Shri Ram',                      url: `${SONGS_BASE}/JAI-SHRI-RAM.mp3` },
+      { name: 'Ram Jo Karenge Achha Karenge',       url: `${SONGS_BASE}/Ram%20Jo%20Karenge%20Achha%20Karenge.mp3` },
+      { name: 'Ram Siya Ram',                       url: `${SONGS_BASE}/Ram-Siya-Ram.mp3` },
+      { name: 'Tum Utho Siya Singaar Karo',         url: `${SONGS_BASE}/Tum%20Utho%20Siya%20Singaar%20Karo.mp3` },
     ],
   },
 
@@ -184,10 +186,10 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/ShivaJi/Shiva10.jpeg', alt: 'Shiva Ji 10' },
     ],
     songs: [
-      { name: 'Gangadhara Shankara',               url: '/profiles/ShivaJi/Songs/Gangadhara-Shankara-Song.mp3' },
-      { name: 'Kaal Bhairav Ashtakam',              url: '/profiles/ShivaJi/Songs/Kaal-Bhairav-Ashtakam.mp3' },
-      { name: 'Rudrashtakam',                       url: '/profiles/ShivaJi/Songs/Rudrashtakam-Agam-Aggarwal.mp3' },
-      { name: 'Shambho Shankar Namah Shivay',       url: '/profiles/ShivaJi/Songs/Shambho-Shankar-Namah-Shivay.mp3' },
+      { name: 'Gangadhara Shankara',               url: `${SONGS_BASE}/Gangadhara-Shankara-Song.mp3` },
+      { name: 'Kaal Bhairav Ashtakam',              url: `${SONGS_BASE}/Kaal-Bhairav-Ashtakam.mp3` },
+      { name: 'Rudrashtakam',                       url: `${SONGS_BASE}/Rudrashtakam-Agam-Aggarwal.mp3` },
+      { name: 'Shambho Shankar Namah Shivay',       url: `${SONGS_BASE}/Shambho-Shankar-Namah-Shivay.mp3` },
     ],
   },
 
@@ -208,10 +210,10 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/Vrindavan/Vrindavan10.jpeg', alt: 'Vrindavan 10' },
     ],
     songs: [
-      { name: 'Braj Me Ratan Radhika Gori',         url: '/profiles/Vrindavan/Songs/Braj%20me%20Ratan%20Radhika%20Gori%20Indresh%20ji%20Maharaj.mp3' },
-      { name: 'Pyaro Vrindavan',                    url: '/profiles/Vrindavan/Songs/Pyaro%20Vrindavan%20Indresh%20Upadhyay%20Ji%20.mp3' },
-      { name: 'Radhe Radhe Radhe Barsane Wali Radhe', url: '/profiles/Vrindavan/Songs/Radhe%20Radhe%20Radhe%20Barsane%20wali%20Radhe%20Swati%20Mishra.mp3' },
-      { name: 'Tujhse Preet Lagi Hai Radhe',        url: '/profiles/Vrindavan/Songs/Tujhse%20Preet%20Lagi%20Hai%20Radhe%20Bhajman%20Radhe.mp3' },
+      { name: 'Braj Me Ratan Radhika Gori',         url: `${SONGS_BASE}/Braj%20me%20Ratan%20Radhika%20Gori%20Indresh%20ji%20Maharaj.mp3` },
+      { name: 'Pyaro Vrindavan',                    url: `${SONGS_BASE}/Pyaro%20Vrindavan%20Indresh%20Upadhyay%20Ji%20.mp3` },
+      { name: 'Radhe Radhe Radhe Barsane Wali Radhe', url: `${SONGS_BASE}/Radhe%20Radhe%20Radhe%20Barsane%20wali%20Radhe%20Swati%20Mishra.mp3` },
+      { name: 'Tujhse Preet Lagi Hai Radhe',        url: `${SONGS_BASE}/Tujhse%20Preet%20Lagi%20Hai%20Radhe%20Bhajman%20Radhe.mp3` },
     ],
   },
 }
