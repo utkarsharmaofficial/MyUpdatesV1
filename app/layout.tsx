@@ -17,7 +17,7 @@ import MusicPlayer from '@/components/layout/MusicPlayer'
 export const metadata: Metadata = {
   title: 'My Updates',
   description: 'Track your grind',
-  icons: { icon: '/favicon.png' },
+  icons: { icon: 'https://hxdjonkahanjqtuwvusn.supabase.co/storage/v1/object/public/defaults/favicon.png' },
 }
 
 const DEFAULT_PROFILE: UserProfile = {
@@ -40,7 +40,7 @@ export default async function RootLayout({
   let userMedia:   UserMediaItem[] = []
   let imageUrls = DEFAULT_IMAGES
   let songs     = DEFAULT_SONGS
-  let logoSrc   = '/logo/HanumanJiLogo.jpeg'
+  let logoSrc   = 'https://hxdjonkahanjqtuwvusn.supabase.co/storage/v1/object/public/defaults/logo/HanumanJiLogo.jpeg'
 
   if (user) {
     // Fetch user profile preferences

@@ -187,10 +187,10 @@ export function resolveLogoPath(
   if (profile.selected_profile === 'custom') {
     const logo = userMedia.find(m => m.type === 'logo')
     if (logo) return logo.display_url ?? logo.public_url
-    return '/logo/HanumanJiLogo.jpeg'
+    return 'https://hxdjonkahanjqtuwvusn.supabase.co/storage/v1/object/public/defaults/logo/HanumanJiLogo.jpeg'
   }
   const def = PROFILE_DEFINITIONS[profile.selected_profile]
-  return def?.logoPath ?? '/logo/HanumanJiLogo.jpeg'
+  return def?.logoPath ?? 'https://hxdjonkahanjqtuwvusn.supabase.co/storage/v1/object/public/defaults/logo/HanumanJiLogo.jpeg'
 }
 
 /** Returns the resolved ThemeDefinition for the current user profile. */
