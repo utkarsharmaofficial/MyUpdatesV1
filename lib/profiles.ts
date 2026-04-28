@@ -41,6 +41,14 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
         name: 'Sri Ramadootha Stotram',
         url: '/profiles/HanumanJi/Songs/Sri-Ramadootha-Stotram.mp3',
       },
+      {
+        name: 'Bajrang Baan',
+        url: '/profiles/HanumanJi/Songs/Bajrang%20Baan%20-%20Rasraj%20Ji%20Maharaj.mp3',
+      },
+      {
+        name: 'Hanuman Chalisa',
+        url: '/profiles/HanumanJi/Songs/Hanuman%20Chalisa%20-%20Rasraj%20ji%20Maharaj.mp3',
+      },
     ],
   },
 
@@ -59,7 +67,12 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/GaneshaJi/Ganesha8.jpeg', alt: 'Ganesha Ji 8' },
       { url: '/profiles/GaneshaJi/Ganesha9.jpeg', alt: 'Ganesha Ji 9' },
     ],
-    songs: [], // Songs will be added in a future update
+    songs: [
+      { name: 'Deva Shree Ganesha',        url: '/profiles/GaneshaJi/Songs/Deva%20Shree%20Ganesha.mp3' },
+      { name: 'Ekadantaya Vakratundaya',    url: '/profiles/GaneshaJi/Songs/Ekadantaya%20Vakratundaya%20Gauri%20Tanaya%20Dhimi.mp3' },
+      { name: 'Gajanana',                  url: '/profiles/GaneshaJi/Songs/Gajanana.mp3' },
+      { name: 'Ganesh Aarti',              url: '/profiles/GaneshaJi/Songs/Ganesh%20Aarti.mp3' },
+    ],
   },
 
   KrishanJi: {
@@ -78,7 +91,11 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/KrishanJi/Krishna9.jpeg',  alt: 'Krishan Ji 9'  },
       { url: '/profiles/KrishanJi/Krishna10.jpeg', alt: 'Krishan Ji 10' },
     ],
-    songs: [], // Songs will be added in a future update
+    songs: [
+      { name: 'Jai Sri Krishna',                    url: '/profiles/KrishanJi/Songs/Jai%20Sri%20Krsna%20-%20Mayapuris%20(128k).mp3' },
+      { name: 'Om Namo Bhagavate Vasudevaya',       url: '/profiles/KrishanJi/Songs/Om%20Namo%20Bhagavate%20Vasudevaya.mp3' },
+      { name: 'Shri Krishna Govind Hare Murari',    url: '/profiles/KrishanJi/Songs/SHRI%20KRISHNA%20GOVIND%20HARE%20MURARI.mp3' },
+    ],
   },
 
   NavaratriSpecial: {
@@ -97,7 +114,12 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/NavaratriSpecial/MaaMahagauri.jpeg',      alt: 'Maa Mahagauri'       },
       { url: '/profiles/NavaratriSpecial/MaaSiddhidatri.jpeg',    alt: 'Maa Siddhidatri'     },
     ],
-    songs: [], // Songs will be added in a future update
+    songs: [
+      { name: 'Jagdamba Ghar Me',          url: '/profiles/NavaratriSpecial/Songs/Jagdamba%20Ghar%20Me%20Swati%20Mishra%20Mohit%20Musik%20Bhojpuri%20Navratri%20Song%202025%20Devi%20Geet.mp3' },
+      { name: 'Jode Jode Falwa',           url: '/profiles/NavaratriSpecial/Songs/Jode%20Jode%20Falwa%20Suruj%20dev%20Swati%20Mishra%20Chath%20Geet.mp3' },
+      { name: 'Meri Maa Ke Barabar',       url: '/profiles/NavaratriSpecial/Songs/Meri%20Maa%20Ke%20Barabar%20Koi%20Nahi%20Swati%20Mishra%20Navratri%20special%20song.mp3' },
+      { name: 'Nimiya Ke Dadh Maiya',      url: '/profiles/NavaratriSpecial/Songs/Nimiya%20ke%20Dadh%20Maiya%20Swati%20Mishra.mp3' },
+    ],
   },
 
   PremanandJi: {
@@ -116,7 +138,9 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/PremanandJi/PremanandJi9.jpeg',  alt: 'Premanand Ji 9'  },
       { url: '/profiles/PremanandJi/PremanandJi10.jpeg', alt: 'Premanand Ji 10' },
     ],
-    songs: [], // Songs will be added in a future update
+    songs: [
+      { name: 'Shri Radha Naam Jaap',      url: '/profiles/PremanandJi/Songs/Shri%20Radha%20Naam%20Jaap.mp3' },
+    ],
   },
 
   RamJi: {
@@ -135,7 +159,12 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/RamJi/Ram9.jpeg',  alt: 'Ram Ji 9'  },
       { url: '/profiles/RamJi/Ram10.jpeg', alt: 'Ram Ji 10' },
     ],
-    songs: [], // Songs will be added in a future update
+    songs: [
+      { name: 'Jai Shri Ram',                      url: '/profiles/RamJi/Songs/JAI-SHRI-RAM.mp3' },
+      { name: 'Ram Jo Karenge Achha Karenge',       url: '/profiles/RamJi/Songs/Ram%20Jo%20Karenge%20Achha%20Karenge.mp3' },
+      { name: 'Ram Siya Ram',                       url: '/profiles/RamJi/Songs/Ram-Siya-Ram.mp3' },
+      { name: 'Tum Utho Siya Singaar Karo',         url: '/profiles/RamJi/Songs/Tum%20Utho%20Siya%20Singaar%20Karo.mp3' },
+    ],
   },
 
   ShivaJi: {
@@ -154,7 +183,12 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/ShivaJi/Shiva9.jpeg',  alt: 'Shiva Ji 9'  },
       { url: '/profiles/ShivaJi/Shiva10.jpeg', alt: 'Shiva Ji 10' },
     ],
-    songs: [], // Songs will be added in a future update
+    songs: [
+      { name: 'Gangadhara Shankara',               url: '/profiles/ShivaJi/Songs/Gangadhara-Shankara-Song.mp3' },
+      { name: 'Kaal Bhairav Ashtakam',              url: '/profiles/ShivaJi/Songs/Kaal-Bhairav-Ashtakam.mp3' },
+      { name: 'Rudrashtakam',                       url: '/profiles/ShivaJi/Songs/Rudrashtakam-Agam-Aggarwal.mp3' },
+      { name: 'Shambho Shankar Namah Shivay',       url: '/profiles/ShivaJi/Songs/Shambho-Shankar-Namah-Shivay.mp3' },
+    ],
   },
 
   Vrindavan: {
@@ -173,7 +207,12 @@ export const PROFILE_DEFINITIONS: Record<string, ProfileDefinition> = {
       { url: '/profiles/Vrindavan/Vrindavan9.jpeg',  alt: 'Vrindavan 9'  },
       { url: '/profiles/Vrindavan/Vrindavan10.jpeg', alt: 'Vrindavan 10' },
     ],
-    songs: [], // Songs will be added in a future update
+    songs: [
+      { name: 'Braj Me Ratan Radhika Gori',         url: '/profiles/Vrindavan/Songs/Braj%20me%20Ratan%20Radhika%20Gori%20Indresh%20ji%20Maharaj.mp3' },
+      { name: 'Pyaro Vrindavan',                    url: '/profiles/Vrindavan/Songs/Pyaro%20Vrindavan%20Indresh%20Upadhyay%20Ji%20.mp3' },
+      { name: 'Radhe Radhe Radhe Barsane Wali Radhe', url: '/profiles/Vrindavan/Songs/Radhe%20Radhe%20Radhe%20Barsane%20wali%20Radhe%20Swati%20Mishra.mp3' },
+      { name: 'Tujhse Preet Lagi Hai Radhe',        url: '/profiles/Vrindavan/Songs/Tujhse%20Preet%20Lagi%20Hai%20Radhe%20Bhajman%20Radhe.mp3' },
+    ],
   },
 }
 
