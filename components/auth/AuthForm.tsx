@@ -56,7 +56,7 @@ export default function AuthForm() {
     <div className="w-full max-w-sm bg-white rounded-2xl shadow-md p-8 flex flex-col items-center gap-6">
       {/* Logo */}
       <Image
-        src="/logo/HanumanJiLogo.jpeg"
+        src="https://hxdjonkahanjqtuwvusn.supabase.co/storage/v1/object/public/defaults/logo/HanumanJiLogo.jpeg"
         alt="MyUpdates Logo"
         width={72}
         height={72}

@@ -40,7 +40,7 @@ export default async function RootLayout({
   let userMedia:   UserMediaItem[] = []
   let imageUrls = DEFAULT_IMAGES
   let songs     = DEFAULT_SONGS
-  let logoSrc   = '/logo/HanumanJiLogo.jpeg'
+  let logoSrc   = 'https://hxdjonkahanjqtuwvusn.supabase.co/storage/v1/object/public/defaults/logo/HanumanJiLogo.jpeg'
 
   if (user) {
     // Fetch user profile preferences
